@@ -1,3 +1,4 @@
+package lavallee.hamouche.tp1;
 /**
  * Classe Crossword servant de base à une application de mots croisés.
  * Utilise quatre instances de la classe Grid.
