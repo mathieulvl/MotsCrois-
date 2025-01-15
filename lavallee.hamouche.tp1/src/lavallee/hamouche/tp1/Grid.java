@@ -54,7 +54,7 @@ public class Grid{
      * @pre correctCoords(row, column)
      */
     public String getCell(int row, int column) {
-       if (correctCoords(row, column)==true){
+       if (correctCoords(row, column)){
         return array[row][column];
 
        }
