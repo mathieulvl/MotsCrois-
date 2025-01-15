@@ -1,8 +1,11 @@
+package lavallee.hamouche.tp1.test;
 
 import static org.junit.Assert.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import lavallee.hamouche.tp1.Grid;
 
 public class TestGrid {
 
