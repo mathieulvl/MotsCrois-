@@ -42,7 +42,7 @@ public class Grid{
      * @return true si les coordonnées sont valides, false sinon
      */
     public boolean correctCoords(int row, int column) {
-       //TODO
+        return row >= 0 && row < height && column >= 0 && column < width;
     }
 
     /**
