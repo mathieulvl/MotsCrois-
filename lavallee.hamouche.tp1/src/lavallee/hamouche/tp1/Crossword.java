@@ -22,21 +22,24 @@ public class Crossword {
      * dotée de 4 instances de Grid, suivant les spécifications données.
      */
     public Crossword(int height, int width) {
-        // Implémentation ici
+        this.solution = new Grid(height, width);
+        this.proposition = new Grid(height, width);
+        this.horizontal=new Grid(height, width);
+        this.vertical=new Grid(height, width);
     }
 
     /**
      * @return nombre de rangées
      */
     public int getHeight() {
-        // Implémentation ici
+        return solution.getHeight();
     }
 
     /**
      * @return nombre de colonnes
      */
     public int getWidth() {
-        // Implémentation ici
+        return solution.getWidth();
     }
 
     /**
@@ -44,7 +47,7 @@ public class Crossword {
      * @return true si et seulement si (row, column) désignent une cellule existante de la grille
      */
     public boolean correctCoords(int row, int column) {
-        // Implémentation ici
+        return solution.correctCoords(row, column) ;
     }
 
     /**
@@ -52,14 +55,25 @@ public class Crossword {
      * @pre correctCoords(row, column)
      */
     public boolean isBlackSquare(int row, int column) {
-        // Implémentation ici
+       return solution.getCell(row, column)==null;
     }
 
     /**
      * Déclarer la case (row, column) noire ou blanche.
      */
     public void setBlackSquare(int row, int column, boolean black) {
-        // Implémentation ici
+        if (correctCoords(row, column)) {
+            String value;
+            if (black) {
+                value = null;
+            } else {
+                value = "";
+            }
+            solution.setCell(row, column, value);
+            proposition.setCell(row, column, value);
+        } else {
+            throw new IllegalArgumentException("Coordonnées invalides.");
+        }
     }
 
     /**
@@ -67,7 +81,7 @@ public class Crossword {
      * @pre correctCoords(row, column) && !isBlackSquare(row, column)
      */
     public char getSolution(int row, int column) {
-        // Implémentation ici
+        return '0';
     }
 
     public void setSolution(int row, int column, char solution) {
@@ -75,7 +89,7 @@ public class Crossword {
     }
 
     public char getProposition(int row, int column) {
-        // Implémentation ici
+        return '0';
     }
 
     public void setProposition(int row, int column, char prop) {
@@ -87,7 +101,7 @@ public class Crossword {
      * @pre correctCoords(row, column) && !isBlackSquare(row, column)
      */
     public String getDefinition(int row, int column, boolean horizontal) {
-        // Implémentation ici
+        return "a faire";
     }
 
     public void setDefinition(int row, int column, boolean horizontal, String definition) {
