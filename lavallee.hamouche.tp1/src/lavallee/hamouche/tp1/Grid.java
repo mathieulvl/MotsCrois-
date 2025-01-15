@@ -85,6 +85,15 @@ public class Grid{
      */
     @Override
     public String toString() {
-       return "";
+        StringBuilder sb = new StringBuilder();
+        for (int row = 0; row < height; row++) {
+            for (int col = 0; col < width; col++) {
+                sb.append(array[row][col] != null ? array[row][col] : " ");
+                if (col < width - 1) sb.append("|");
+            }
+            sb.append("\n");
+        }
+        return sb.toString();
     }
+    
 }
