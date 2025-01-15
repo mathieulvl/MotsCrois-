@@ -54,7 +54,7 @@ public class Grid{
      * @pre correctCoords(row, column)
      */
     public String getCell(int row, int column) {
-       return (0, 1);
+       return (0,1);
     }
 
     /**
@@ -66,7 +66,12 @@ public class Grid{
      * @pre correctCoords(row, column)
      */
     public void setCell(int row, int column, String value) {
-        //TODO
+        if (correctCoords(row, column)){
+            array[row][column] = value;
+        }
+        else {
+            throw new IllegalArgumentException("Coordonnées invalides.");
+        }
     }
 
     /**
@@ -76,6 +81,6 @@ public class Grid{
      */
     @Override
     public String toString() {
-       //TODO
+       return "";
     }
 }
