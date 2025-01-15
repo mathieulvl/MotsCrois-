@@ -54,7 +54,7 @@ public class Grid{
      * @pre correctCoords(row, column)
      */
     public String getCell(int row, int column) {
-       //TODO
+       return (0, 1);
     }
 
     /**
