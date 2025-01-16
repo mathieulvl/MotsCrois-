@@ -1,7 +1,10 @@
+package lavallee.hamouche.tp1.test;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import lavallee.hamouche.tp1.Crossword;
+
 
 public class TestCrossword {
 	private Crossword mc;
