@@ -81,8 +81,19 @@ public class Crossword {
      * @pre correctCoords(row, column) && !isBlackSquare(row, column)
      */
     public char getSolution(int row, int column) {
-        return '0';
+            // Vérifie les préconditions
+    if (!correctCoords(row, column)) {
+        throw new IllegalArgumentException("Coordonnées invalides : (" + row + ", " + column + ").");
     }
+    if (isBlackSquare(row, column)) {
+        throw new IllegalArgumentException("La case (" + row + ", " + column + ") est une case noire.");
+    }
+    String cellValue = this.solution.getCell(row, column);
+    if (cellValue == null || cellValue.isEmpty()) {
+        return ' ';
+    }
+    return cellValue.charAt(0);
+}
 
     public void setSolution(int row, int column, char solution) {
         // Implémentation ici
