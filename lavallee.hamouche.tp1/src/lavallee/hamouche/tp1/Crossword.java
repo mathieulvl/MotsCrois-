@@ -144,10 +144,29 @@ public class Crossword {
      * @pre correctCoords(row, column) && !isBlackSquare(row, column)
      */
     public String getDefinition(int row, int column, boolean horizontal) {
-        return "a faire";
+        if (!correctCoords(row, column)) {
+            throw new IllegalArgumentException("Coordonnées invalides : [" + row + "," + column + "]");
+        }
+        if (isBlackSquare(row, column)) {
+            throw new IllegalArgumentException("La case est noire : [" + row + "," + column + "]");
+        }
+    
+        if (horizontal) {
+            return this.horizontal.getCell(row, column);
+        } else {
+            return this.vertical.getCell(row, column);
+        }
     }
 
     public void setDefinition(int row, int column, boolean horizontal, String definition) {
-        // Implémentation ici
+        if (!isBlackSquare(row, column)) {
+            if (horizontal) {
+                this.horizontal.setCell(row, column, definition);
+            } else {
+                this.vertical.setCell(row, column, definition);
+            }
+        } else {
+            throw new IllegalArgumentException("La case est noire.");
+        }
     }
 }
