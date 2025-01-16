@@ -76,18 +76,35 @@ public class Crossword {
         }
     }
 
+
+    /**
+ * Vérifie les préconditions pour les coordonnées d'une case dans la grille.
+ * Cette méthode vérifie si les coordonnées données (row, column) sont valides 
+ * et si la case correspondante n'est pas noire. 
+ * Si l'une de ces conditions n'est pas remplie, une exception est levée.
+ * 
+ * @param row La ligne de la case à vérifier.
+ * @param column La colonne de la case à vérifier.
+ * 
+ * @throws IllegalArgumentException Si les coordonnées sont invalides (hors de la grille) ou si la case est noire.
+ */
+    private void verifie(int row, int column) {
+        // Vérifier si les coordonnées sont valides
+        if (!correctCoords(row, column)) {
+            throw new IllegalArgumentException("Coordonnées invalides : (" + row + ", " + column + ").");
+        }
+        // Vérifier si la case est noire
+        if (isBlackSquare(row, column)) {
+            throw new IllegalArgumentException("La case (" + row + ", " + column + ") est une case noire.");
+        }
+    }
     /**
      * @return la solution dans la case (row, column)
      * @pre correctCoords(row, column) && !isBlackSquare(row, column)
      */
     public char getSolution(int row, int column) {
             // Vérifie les préconditions
-    if (!correctCoords(row, column)) {
-        throw new IllegalArgumentException("Coordonnées invalides : (" + row + ", " + column + ").");
-    }
-    if (isBlackSquare(row, column)) {
-        throw new IllegalArgumentException("La case (" + row + ", " + column + ") est une case noire.");
-    }
+    verifie(row, column);
     String cellValue = this.solution.getCell(row, column);
     if (cellValue == null || cellValue.isEmpty()) {
         return ' ';
@@ -96,23 +113,31 @@ public class Crossword {
 }
 
     public void setSolution(int row, int column, char solution) {
-        if (!correctCoords(row, column)) {
-            throw new IllegalArgumentException("Coordonnées invalides : (" + row + ", " + column + ").");
-        }
-        if (isBlackSquare(row, column)) {
-            throw new IllegalArgumentException("La case (" + row + ", " + column + ") est une case noire.");
-        }
+        verifie(row, column);
         this.solution.setCell(row, column, String.valueOf(solution));
         
     }
 
     public char getProposition(int row, int column) {
-        return '0';
+        verifie(row, column);
+    
+        // Récupérer la proposition
+        String cellValue = this.proposition.getCell(row, column);
+        if (cellValue == null || cellValue.isEmpty()) {
+            return ' '; // Retourner un espace si la case est vide
+        }
+        return cellValue.charAt(0); 
     }
+    
 
     public void setProposition(int row, int column, char prop) {
-        // Implémentation ici
+        verifie(row, column);
+    
+        // Enregistrer la proposition
+        this.proposition.setCell(row, column, String.valueOf(prop));
     }
+    
+    
 
     /**
      * @return la définition horizontale ou verticale dans (row, column).
