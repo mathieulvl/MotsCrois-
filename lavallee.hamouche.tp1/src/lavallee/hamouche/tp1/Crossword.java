@@ -96,7 +96,14 @@ public class Crossword {
 }
 
     public void setSolution(int row, int column, char solution) {
-        // Implémentation ici
+        if (!correctCoords(row, column)) {
+            throw new IllegalArgumentException("Coordonnées invalides : (" + row + ", " + column + ").");
+        }
+        if (isBlackSquare(row, column)) {
+            throw new IllegalArgumentException("La case (" + row + ", " + column + ") est une case noire.");
+        }
+        this.solution.setCell(row, column, String.valueOf(solution));
+        
     }
 
     public char getProposition(int row, int column) {
