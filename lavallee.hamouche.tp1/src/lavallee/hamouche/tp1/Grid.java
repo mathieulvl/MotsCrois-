@@ -54,13 +54,11 @@ public class Grid{
      * @pre correctCoords(row, column)
      */
     public String getCell(int row, int column) {
-       if (correctCoords(row, column)){
+        if (!correctCoords(row, column)) {
+            throw new IllegalArgumentException("Coordonnées invalides : (" + row + ", " + column + ").");
+        }
         return array[row][column];
-
-       }
-       return null ; 
     }
-
     /**
      * Modifie la valeur de la cellule à la position donnée.
      *
